@@ -1,21 +1,24 @@
 
 <h1 align="center">
-    java-properties-i18n-translation
+  java-properties-i18n-translation
 </h1>
 
 <h4 align="center">Translate i18n Java properties files to desired language(s).</h4>
 
 <p align="center">
-    <a href="#description">Description</a> •
-    <a href="#installation">Installation</a> •
-    <a href="#usage">Usage</a> •
-    <a href="#license">License</a>
+  <a href="#description">Description</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#license">License</a>
 </p>
 
 <p align="center">
-    <a href="LICENSE" alt="License">
-        <img src="https://img.shields.io/github/license/hypercision/java-properties-i18n-translation" />
-    </a>
+  <a href="https://github.com/hypercision/java-properties-i18n-translation/actions/workflows/python.yml" alt="Unit tests">
+    <img src="https://github.com/hypercision/java-properties-i18n-translation/actions/workflows/python.yml/badge.svg" />
+  </a>
+  <a href="LICENSE" alt="License">
+    <img src="https://img.shields.io/github/license/hypercision/java-properties-i18n-translation" />
+  </a>
 </p>
 
 ## Description

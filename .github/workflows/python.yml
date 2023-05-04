@@ -1,4 +1,4 @@
-name: Python test
+name: Unit tests
 permissions: read-all
 
 on: # yamllint disable-line rule:truthy
