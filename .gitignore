@@ -18,7 +18,9 @@ node_modules/
 *.db
 *.pyc
 .sdkmanrc
-temp/
+.tox
+src/java_properties_i18n_translation.egg-info/
+.venv
 venv
 i18n_env
 megalinter-reports/

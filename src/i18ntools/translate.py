@@ -16,8 +16,8 @@ import os
 import re
 from os import path
 
-import parse_i18n_file
 import requests
+from i18ntools.parse_i18n_file import parse_i18n_file
 
 # Default region for the Azure translator resource.
 default_region = "eastus2"
@@ -25,7 +25,7 @@ default_region = "eastus2"
 default_lang = "en"
 
 
-def getDefaultFilePath(input_file_path, output_lang):
+def get_default_filepath(input_file_path, output_lang):
     """Returns the filepath for a new i18n Java properties file
     based on the filepath of the input file and the output language.
 
@@ -63,7 +63,7 @@ def translate_file(
         # Make output_file_path be the input_file_path with the
         # output_lang appended to it. For example, "/dir/messages.properties"
         # would become "/dir/messages_de.properties".
-        output_file_path = getDefaultFilePath(input_file_path, output_lang)
+        output_file_path = get_default_filepath(input_file_path, output_lang)
 
     # Set up the Translator API endpoint and subscription key
     translator_endpoint = (
@@ -74,7 +74,7 @@ def translate_file(
     subscription_key = os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"]
 
     # Parse the input file into a dictionary
-    input_data = parse_i18n_file.parse_i18n_file(input_file_path)
+    input_data = parse_i18n_file(input_file_path)
 
     # Open the input file in read mode to read its contents
     with open(input_file_path, "r", encoding="utf-8") as f:

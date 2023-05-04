@@ -15,10 +15,10 @@ import os
 import sys
 from os import path
 
-import parse_i18n_file
+import i18ntools.translate
 import requests
-import sort_i18n_file
-import translate
+from i18ntools.parse_i18n_file import parse_i18n_file
+from i18ntools.sort_i18n_file import sort_i18n_file
 
 # Default region for the Azure translator resource.
 default_region = "eastus2"
@@ -43,7 +43,9 @@ def translate_missing_messages(
         # Make output_file_path be the input_file_path with the
         # output_lang appended to it. For example, "/dir/messages.properties"
         # would become "/dir/messages_de.properties".
-        output_file_path = translate.getDefaultFilePath(input_file_path, output_lang)
+        output_file_path = i18ntools.translate.get_default_filepath(
+            input_file_path, output_lang
+        )
 
     if not path.exists(output_file_path):
         raise FileNotFoundError(
@@ -54,8 +56,8 @@ def translate_missing_messages(
     subscription_key = os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"]
 
     # Parse the input file and output file into a dictionary
-    input_data = parse_i18n_file.parse_i18n_file(input_file_path)
-    output_data = parse_i18n_file.parse_i18n_file(output_file_path)
+    input_data = parse_i18n_file(input_file_path)
+    output_data = parse_i18n_file(output_file_path)
 
     # Find any i18n messages missing from the output file
     missing_message_keys = []
@@ -125,7 +127,7 @@ def translate_missing_messages(
         output_file_path,
     )
     if sort_file:
-        sort_i18n_file.sort_i18n_file(input_file_path, output_lang, output_file_path)
+        sort_i18n_file(input_file_path, output_lang, output_file_path)
 
 
 if __name__ == "__main__":

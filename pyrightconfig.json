@@ -1,0 +1,10 @@
+{
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "tests"
+  ],
+  "reportMissingTypeStubs": false,
+  "typeCheckingMode": "basic"
+}

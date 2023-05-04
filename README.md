@@ -25,13 +25,13 @@ using [Azure Cognitive Services Translator](https://azure.microsoft.com/en-us/se
 
 ### What does each script do?
 
-- [translate.py](/translate.py) translates an entire i18n Java properties file into a new i18n Java properties file of a different language.
-- [translate_missing.py](/translate_missing.py) translates the messages in an i18n Java properties file that are missing
+- [translate.py](/src/i18ntools/translate.py) translates an entire i18n Java properties file into a new i18n Java properties file of a different language.
+- [translate_missing.py](/src/i18ntools/translate_missing.py) translates the messages in an i18n Java properties file that are missing
 from an i18n Java properties file of a different language.
 The missing messages will be appended at the end of the output file unless the `--sort` option is used.
 Note: using the `--sort` option will delete comments in the output file that are not present in the input file.
-- [parse_i18n_file.py](/parse_i18n_file.py) reads an i18n Java properties file and returns the data as a dictionary.
-- [sort_i18n_file.py](/sort_i18n_file.py) sorts the messages in a given i18n Java properties file so that they are
+- [parse_i18n_file.py](/src/i18ntools/parse_i18n_file.py) reads an i18n Java properties file and returns the data as a dictionary.
+- [sort_i18n_file.py](/src/i18ntools/sort_i18n_file.py) sorts the messages in a given i18n Java properties file so that they are
 in the same order as the messages in a different i18n Java properties file.
 Using this script will delete comments in the sorted output file that are not present in the input file.
 
@@ -44,7 +44,7 @@ git clone git@github.com:hypercision/java-properties-i18n-translation.git
 ```
 
 Navigate to the cloned repository and create a [virtual environment](https://docs.python.org/3/library/venv.html#module-venv)
-to run these Python 3 scripts on your local machine:
+to run these Python scripts on your local machine:
 ```shell
 cd java-properties-i18n-translation
 python -m venv i18n_env
@@ -56,9 +56,10 @@ The command to activate the virtual environment on Windows is:
 i18n_env\Scripts\activate.bat
 ```
 
-Then install the packages required by our scripts:
+Then install the packages required by our scripts and an editable installation of this package:
 ```shell
 pip install -r requirements.txt
+pip install --editable .
 ```
 
 Python “Virtual Environments” allow Python packages to be installed in an isolated location
@@ -68,7 +69,7 @@ Once you are done using Python, you can exit the virtual environment by entering
 
 ## Usage
 
-Before using `translate.py` or `translate_missing.py`, your Azure API secret key mus be set in
+Before using `translate.py` or `translate_missing.py`, your Azure API secret key must be set in
 an environment variable named `TRANSLATOR_API_SUBSCRIPTION_KEY`.
 ```shell
 export TRANSLATOR_API_SUBSCRIPTION_KEY=<your_key>
@@ -84,7 +85,7 @@ default.invalid.min.message=Property [{0}] of class [{1}] with value [{2}] is le
 # Track 4 on Expert In A Dying Field
 TheBeths.YourSide.lyrics=I want to see you knocking at the door. \
     I wanna leave you out there waiting in the downpour. \
-    Singing that you\''re sorry, dripping on the hall floor.
+    Singing that you’re sorry, dripping on the hall floor.
 instructor.submitWithCustomTime.customSubmitTS.missing.error=The customSubmitTS parameter is missing. \
     It must be present and of type Date.
 
@@ -95,9 +96,10 @@ handshake.register.suspended.error=The trial period has ended for your account \
     and you can no longer use the application.
 handshake.register.disabledException.error=Instructor is disabled
 ```
+
 When you run:
 ```shell
-python translate.py -i=/home/docs/example.properties -t=es
+python src/i18ntools/translate.py -i=/home/docs/example.properties -t=es
 ```
 Then a new file named `/home/docs/example_es.properties` will be saved and contain Spanish translations
 of the input file, with the comments preserved:
@@ -139,7 +141,7 @@ Details about how to use each file can be found by running it with the `--help` 
 ## Obtaining API keys
 
 - Azure
-    - Follow the instructions [here](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-translator?tabs=nodejs#prerequisites).
+  - Follow the instructions [here](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-translator?tabs=nodejs#prerequisites).
 
 ## License
 
