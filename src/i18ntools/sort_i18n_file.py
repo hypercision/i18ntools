@@ -16,8 +16,8 @@ with an "=" character in them.
 import argparse
 from os import path
 
-import parse_i18n_file
-import translate
+from i18ntools.parse_i18n_file import parse_i18n_file
+from i18ntools.translate import get_default_filepath
 
 
 def sort_i18n_file(input_file_path, output_lang, output_file_path=None):
@@ -47,7 +47,7 @@ def sort_i18n_file(input_file_path, output_lang, output_file_path=None):
         # Make output_file_path be the input_file_path with the
         # output_lang appended to it. For example, "/dir/messages.properties"
         # would become "/dir/messages_de.properties".
-        output_file_path = translate.getDefaultFilePath(input_file_path, output_lang)
+        output_file_path = get_default_filepath(input_file_path, output_lang)
 
     if not path.exists(output_file_path):
         raise FileNotFoundError(
@@ -55,7 +55,7 @@ def sort_i18n_file(input_file_path, output_lang, output_file_path=None):
         )
 
     # Parse the output file into a dictionary
-    output_data = parse_i18n_file.parse_i18n_file(output_file_path)
+    output_data = parse_i18n_file(output_file_path)
 
     # Open the input file in read mode to read its contents
     with open(input_file_path, "r", encoding="utf-8") as f:
