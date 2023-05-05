@@ -63,7 +63,10 @@ def parse_i18n_file(file_path):
     return data
 
 
-if __name__ == "__main__":
+def main():
+    """Build a CLI for calling parse_i18n_file and printing the resulting dictionary.
+    This is primarily for development/debugging purposes.
+    """
     parser = argparse.ArgumentParser(
         description=("Parses an i18n Java properties file and prints its data")
     )
@@ -82,3 +85,7 @@ if __name__ == "__main__":
     for key, value in result.items():
         print("key", key)
         print("value", value)
+
+
+if __name__ == "__main__":
+    main()

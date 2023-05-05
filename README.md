@@ -65,6 +65,14 @@ pip install -r requirements.txt
 pip install --editable .
 ```
 
+When this package is installed, CLI executables of the scripts will be installed on the path of your virtual environment.
+```shell
+translate --help
+translate-missing --help
+parse-i18n-file --help
+sort-i18n-file --help
+```
+
 Python “Virtual Environments” allow Python packages to be installed in an isolated location
 for a particular application, rather than being installed globally.
 You should run all your Python commands with your virtual environment activated.
@@ -102,6 +110,8 @@ handshake.register.disabledException.error=Instructor is disabled
 
 When you run:
 ```shell
+translate -i=/home/docs/example.properties -t=es
+# Or you could call the file directly
 python src/i18ntools/translate.py -i=/home/docs/example.properties -t=es
 ```
 Then a new file named `/home/docs/example_es.properties` will be saved and contain Spanish translations
@@ -128,7 +138,7 @@ handshake.register.disabledException.error=El instructor está deshabilitado
 
 These are the options for `translate.py`.
 Details about how to use each file can be found by running it with the `--help` flag:
-`python translate_missing.py --help`.
+`python src/i18ntools/translate_missing.py --help`.
 
 <!-- markdownlint-disable -->
 | Key | Alias | Description | Default |

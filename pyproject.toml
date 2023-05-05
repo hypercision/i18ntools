@@ -36,6 +36,12 @@ build-backend = "setuptools.build_meta"
 "Bug Reports" = "https://github.com/hypercision/java-properties-i18n-translation/issues"
 "Source" = "https://github.com/hypercision/java-properties-i18n-translation"
 
+[project.scripts]
+translate = "i18ntools.translate:main"
+translate-missing = "i18ntools.translate_missing:main"
+parse-i18n-file = "i18ntools.parse_i18n_file:main"
+sort-i18n-file = "i18ntools.sort_i18n_file:main"
+
 [tool.pytest.ini_options]
 addopts = [
     "--import-mode=importlib",

@@ -192,7 +192,8 @@ def translate_file(
     # )
 
 
-if __name__ == "__main__":
+def main():
+    """Build a CLI for calling translate_file"""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "-i",
@@ -250,3 +251,7 @@ if __name__ == "__main__":
     translate_file(
         args.input_file, args.to, args.output_file, args.from_lang, args.region
     )
+
+
+if __name__ == "__main__":
+    main()

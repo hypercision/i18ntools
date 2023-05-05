@@ -25,4 +25,4 @@ jobs:
           pip install -r requirements.txt
       - name: Run tests with tox
         # Run tox using the version of Python in `PATH`
-        run: tox -e py
+        run: tox run -e scripts,py

@@ -99,7 +99,8 @@ def sort_i18n_file(input_file_path, output_lang, output_file_path=None):
             print(key)
 
 
-if __name__ == "__main__":
+def main():
+    """Build a CLI for calling sort_i18n_file"""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "-i",
@@ -140,3 +141,7 @@ if __name__ == "__main__":
         args.to,
         args.output_file,
     )
+
+
+if __name__ == "__main__":
+    main()

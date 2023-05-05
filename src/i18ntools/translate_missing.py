@@ -130,7 +130,8 @@ def translate_missing_messages(
         sort_i18n_file(input_file_path, output_lang, output_file_path)
 
 
-if __name__ == "__main__":
+def main():
+    """Build a CLI for calling translate_missing_messages"""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "-i",
@@ -204,3 +205,7 @@ if __name__ == "__main__":
         args.region,
         args.sort,
     )
+
+
+if __name__ == "__main__":
+    main()
