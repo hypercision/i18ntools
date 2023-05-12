@@ -14,7 +14,7 @@ with an "=" character in them.
 #  present in the input file.
 
 import argparse
-from os import path
+from pathlib import Path
 
 from i18ntools.parse_i18n_file import parse_i18n_file
 from i18ntools.translate import get_default_filepath
@@ -38,7 +38,7 @@ def sort_i18n_file(input_file_path, output_lang, output_file_path=None):
             the output language appended to it.
             For example, messages.properties would become messages_de.properties
     """
-    if not path.exists(input_file_path):
+    if not Path(input_file_path).exists():
         raise FileNotFoundError(
             "File {0} does not exist".format(input_file_path), input_file_path
         )
@@ -49,7 +49,7 @@ def sort_i18n_file(input_file_path, output_lang, output_file_path=None):
         # would become "/dir/messages_de.properties".
         output_file_path = get_default_filepath(input_file_path, output_lang)
 
-    if not path.exists(output_file_path):
+    if not Path(output_file_path).exists():
         raise FileNotFoundError(
             "File {0} does not exist".format(output_file_path), output_file_path
         )
