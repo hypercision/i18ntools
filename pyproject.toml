@@ -45,4 +45,5 @@ sort-i18n-file = "i18ntools.sort_i18n_file:main"
 [tool.pytest.ini_options]
 addopts = [
     "--import-mode=importlib",
+    "-p no:legacypath",
 ]

@@ -14,7 +14,7 @@ with an "=" character in them.
 import argparse
 import os
 import re
-from os import path
+from pathlib import Path
 
 import requests
 from i18ntools.parse_i18n_file import parse_i18n_file
@@ -54,7 +54,7 @@ def translate_file(
     input_lang=default_lang,
     translator_region=default_region,
 ):
-    if not path.exists(input_file_path):
+    if not Path(input_file_path).exists():
         raise FileNotFoundError(
             "File {0} does not exist".format(input_file_path), input_file_path
         )

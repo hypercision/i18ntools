@@ -12,7 +12,7 @@ with an "=" character in them.
 
 import argparse
 import os
-from os import path
+from pathlib import Path
 
 import i18ntools.translate
 import requests
@@ -33,7 +33,7 @@ def translate_missing_messages(
     input_lang=default_lang,
     translator_region=default_region,
 ):
-    if not path.exists(input_file_path):
+    if not Path(input_file_path).exists():
         raise FileNotFoundError(
             "File {0} does not exist".format(input_file_path), input_file_path
         )
@@ -46,7 +46,7 @@ def translate_missing_messages(
             input_file_path, output_lang
         )
 
-    if not path.exists(output_file_path):
+    if not Path(output_file_path).exists():
         raise FileNotFoundError(
             "File {0} does not exist".format(output_file_path), output_file_path
         )

@@ -11,7 +11,7 @@ See related question: https://stackoverflow.com/questions/76047202
 """
 
 import argparse
-from os import path
+from pathlib import Path
 
 
 def parse_i18n_file(file_path):
@@ -23,7 +23,7 @@ def parse_i18n_file(file_path):
     Keyword arguments:
     file_path -- filepath of the i18n Java properties file to parse
     """
-    if not path.exists(file_path):
+    if not Path(file_path).exists():
         raise FileNotFoundError("File {0} does not exist".format(file_path), file_path)
 
     # Open the input file in read mode to read its contents
