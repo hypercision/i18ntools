@@ -28,10 +28,10 @@ default_lang = "en"
 def translate_missing_messages(
     input_file_path,
     output_lang,
+    sort_file=False,
     output_file_path=None,
     input_lang=default_lang,
     translator_region=default_region,
-    sort_file=False,
 ):
     if not path.exists(input_file_path):
         raise FileNotFoundError(
@@ -199,10 +199,10 @@ def main():
     translate_missing_messages(
         args.input_file,
         args.to,
+        args.sort,
         args.output_file,
         args.from_lang,
         args.region,
-        args.sort,
     )
 
 
