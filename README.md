@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  java-properties-i18n-translation
+  i18ntools
 </h1>
 
 <h4 align="center">Translate i18n Java properties files to desired language(s).</h4>
@@ -13,17 +13,17 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/hypercision/java-properties-i18n-translation/actions/workflows/python.yml" alt="Unit tests">
-    <img src="https://github.com/hypercision/java-properties-i18n-translation/actions/workflows/python.yml/badge.svg" />
+  <a href="https://github.com/hypercision/i18ntools/actions/workflows/python.yml" alt="Unit tests">
+    <img src="https://github.com/hypercision/i18ntools/actions/workflows/python.yml/badge.svg" />
   </a>
   <a href="LICENSE" alt="License">
-    <img src="https://img.shields.io/github/license/hypercision/java-properties-i18n-translation" />
+    <img src="https://img.shields.io/github/license/hypercision/i18ntools" />
   </a>
 </p>
 
 ## Description
 
-java-properties-i18n-translation is a collection of Python scripts to help translate your Java properties internationalization files
+i18ntools is a collection of Python scripts to help translate your Java properties internationalization files
 using [Azure Cognitive Services Translator](https://azure.microsoft.com/en-us/services/cognitive-services/translator/).
 
 ### What does each script do?
@@ -43,13 +43,13 @@ Using this script will delete comments in the sorted output file that are not pr
 You can currently only clone this repository to run the scripts:
 
 ```shell
-git clone git@github.com:hypercision/java-properties-i18n-translation.git
+git clone git@github.com:hypercision/i18ntools.git
 ```
 
 Navigate to the cloned repository and create a [virtual environment](https://docs.python.org/3/library/venv.html#module-venv)
 to run these Python scripts on your local machine:
 ```shell
-cd java-properties-i18n-translation
+cd i18ntools
 python -m venv i18n_env
 source i18n_env/bin/activate
 ```

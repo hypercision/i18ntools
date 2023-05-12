@@ -1,7 +1,7 @@
 [project]
-name = "java-properties-i18n-translation"
+name = "i18ntools"
 version = "0.1.0"
-description = "java-properties-i18n-translation helps translate Java properties i18n files using Azure Cognitive Services Translator"
+description = "i18ntools helps translate Java properties i18n files using Azure Cognitive Services Translator"
 readme = "README.md"
 authors = [
     { name = "Tyler VanZanten", email = "tvanzanten@hypercision.com" }
@@ -32,9 +32,9 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project.urls]
-"Homepage" = "https://github.com/hypercision/java-properties-i18n-translation"
-"Bug Reports" = "https://github.com/hypercision/java-properties-i18n-translation/issues"
-"Source" = "https://github.com/hypercision/java-properties-i18n-translation"
+"Homepage" = "https://github.com/hypercision/i18ntools"
+"Bug Reports" = "https://github.com/hypercision/i18ntools/issues"
+"Source" = "https://github.com/hypercision/i18ntools"
 
 [project.scripts]
 translate = "i18ntools.translate:main"
