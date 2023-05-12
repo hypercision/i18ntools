@@ -12,7 +12,6 @@ with an "=" character in them.
 
 import argparse
 import os
-import sys
 from os import path
 
 import i18ntools.translate
@@ -76,7 +75,7 @@ def translate_missing_messages(
             f"No messages to translate. \n{output_file_path} already has all the "
             f"same messages as {input_file_path}"
         )
-        sys.exit(0)
+        return
 
     print(f"About to translate {message_count} missing messages")
 
