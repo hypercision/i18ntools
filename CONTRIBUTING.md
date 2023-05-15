@@ -4,16 +4,20 @@ Instructions:
 
 - Fork the repository and clone it on your computer
 - Install dependencies
-- Update source code and add [tests](https://docs.pytest.org/en/latest/contents.html) for any code you create
+- Update source code and add [tests](https://docs.pytest.org/) for any code you create
 - Run the tests to verify your updates didn't break anything
 - Once your code is ready, documented and tested, please make a [pull request](https://github.com/hypercision/i18ntools/pulls)
 
 ## Testing
 
+### vcrpy
+
+In addition to [`pytest`](https://docs.pytest.org/), we also use the [`vcrpy`](https://vcrpy.readthedocs.io/) library when writing our tests.
+
 ### tox
 
 To run the tests, install the project dependencies in a [virtual environment](https://docs.python.org/3/library/venv.html#module-venv)
-and then run [tox](https://tox.wiki/en/latest/index.html):
+and then run [tox](https://tox.wiki/):
 ```bash
 python -m venv i18n_env
 source i18n_env/bin/activate

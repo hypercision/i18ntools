@@ -11,7 +11,7 @@ def test_sort_i18n_file(tmp_path):
 
     output_lang = "de"
     # Sort the output file
-    sort_i18n_file("tests/example.properties", output_lang, str(output_file))
+    sort_i18n_file("tests/resources/example.properties", output_lang, str(output_file))
 
     with output_file.open() as f:
         output_file_contents = f.readlines()

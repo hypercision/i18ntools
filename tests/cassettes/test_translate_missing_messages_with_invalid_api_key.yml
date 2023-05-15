@@ -1,0 +1,50 @@
+interactions:
+- request:
+    body: '[{"text": "I want to see you knocking at the door. \\\n    I wanna leave
+      you out there waiting in the downpour. \\\n    Singing that you\u2019re sorry,
+      dripping on the hall floor."}, {"text": "The customSubmitTS parameter is missing.
+      \\\n    It must be present and of type Date."}, {"text": "{0} session removed."},
+      {"text": "The trial period has ended for your account \\\n    and you can no
+      longer use the application."}, {"text": "Instructor is disabled"}]'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '459'
+      Content-Type:
+      - application/json
+      Ocp-Apim-Subscription-Key:
+      - three_little_ducks
+      Ocp-Apim-Subscription-Region:
+      - eastus2
+      User-Agent:
+      - python-requests/2.32.3
+    method: POST
+    uri: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de
+  response:
+    body:
+      string: '{"error":{"code":401001,"message":"The request is not authorized because
+        credentials are missing or invalid."}}'
+    headers:
+      Access-Control-Expose-Headers:
+      - X-RequestId
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 31 Jul 2024 18:52:56 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-RequestId:
+      - 8f8bcf4a-f286-4588-998b-368eb9e7cc6f.USE2.0731T1852
+    status:
+      code: 401
+      message: Unauthorized
+version: 1
