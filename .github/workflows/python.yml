@@ -8,7 +8,6 @@ on: # yamllint disable-line rule:truthy
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,4 +25,4 @@ jobs:
           pip install -r requirements.txt
       - name: Run tests and linters with tox
         # Run tox using the version of Python in `PATH`
-        run: tox run -e lint,scripts,py
+        run: tox run -e lint-test,scripts,py

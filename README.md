@@ -31,13 +31,13 @@ using [Azure Cognitive Services Translator](https://azure.microsoft.com/en-us/se
 
 ### What does each script do?
 
-- [translate.py](/src/i18ntools/translate.py) translates an entire i18n Java properties file into a new i18n Java properties file of a different language.
-- [translate_missing.py](/src/i18ntools/translate_missing.py) translates the messages in an i18n Java properties file that are missing
+- [translate.py](https://github.com/hypercision/i18ntools/blob/main/src/i18ntools/translate.py) translates an entire i18n Java properties file into a new i18n Java properties file of a different language.
+- [translate_missing.py](https://github.com/hypercision/i18ntools/blob/main/src/i18ntools/translate_missing.py) translates the messages in an i18n Java properties file that are missing
 from an i18n Java properties file of a different language.
 The missing messages will be appended at the end of the output file unless the `--sort` option is used.
 Note: using the `--sort` option will delete comments in the output file that are not present in the input file.
-- [parse_i18n_file.py](/src/i18ntools/parse_i18n_file.py) reads an i18n Java properties file and returns the data as a dictionary.
-- [sort_i18n_file.py](/src/i18ntools/sort_i18n_file.py) sorts the messages in a given i18n Java properties file so that they are
+- [parse_i18n_file.py](https://github.com/hypercision/i18ntools/blob/main/src/i18ntools/parse_i18n_file.py) reads an i18n Java properties file and returns the data as a dictionary.
+- [sort_i18n_file.py](https://github.com/hypercision/i18ntools/blob/main/src/i18ntools/sort_i18n_file.py) sorts the messages in a given i18n Java properties file so that they are
 in the same order as the messages in a different i18n Java properties file.
 Using this script will delete comments in the sorted output file that are not present in the input file.
 
@@ -146,9 +146,9 @@ from i18ntools.translate import translate_file
 
 
 files = [
-    "src/app/Admin/i18n/messageBundle.properties",
-    "src/app/Device/crud/i18n/messageBundle.properties",
-    "src/app/Login/i18n/messageBundle.properties",
+    "app/Admin/i18n/messageBundle.properties",
+    "app/Device/crud/i18n/messageBundle.properties",
+    "app/Login/i18n/messageBundle.properties",
 ]
 
 output_lang = "es"
@@ -164,9 +164,9 @@ from i18ntools.translate_missing import translate_missing_messages
 
 
 files = [
-    "src/app/Admin/i18n/messageBundle.properties",
-    "src/app/Device/crud/i18n/messageBundle.properties",
-    "src/app/Login/i18n/messageBundle.properties",
+    "app/Admin/i18n/messageBundle.properties",
+    "app/Device/crud/i18n/messageBundle.properties",
+    "app/Login/i18n/messageBundle.properties",
 ]
 
 output_lang = "es"
@@ -174,9 +174,9 @@ sort_file = True
 
 for input_file in files:
     # This assumes the following files exist:
-    # src/app/Admin/i18n/messageBundle_es.properties
-    # src/app/Device/crud/i18n/messageBundle_es.properties
-    # src/app/Login/i18n/messageBundle_es.properties
+    # app/Admin/i18n/messageBundle_es.properties
+    # app/Device/crud/i18n/messageBundle_es.properties
+    # app/Login/i18n/messageBundle_es.properties
     translate_missing_messages(input_file, output_lang, sort_file)
 ```
 
@@ -188,3 +188,7 @@ for input_file in files:
 ## License
 
 - [MIT](LICENSE)
+
+## Contribute
+
+Contributions are more than welcome. Please see the [contribution instructions](https://github.com/hypercision/i18ntools/blob/main/CONTRIBUTING.md).

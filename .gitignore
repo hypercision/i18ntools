@@ -19,7 +19,7 @@ node_modules/
 *.pyc
 .sdkmanrc
 .tox
-src/java_properties_i18n_translation.egg-info/
+src/i18ntools.egg-info/
 .venv
 venv
 i18n_env

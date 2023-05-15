@@ -26,4 +26,3 @@ FILEIO_REPORTER: false
 # yamllint disable-line rule:line-length
 FILTER_REGEX_EXCLUDE: "(CHANGELOG.md)"
 GROOVY_NPM_GROOVY_LINT_ARGUMENTS: ["--failon", "error"]
-REPOSITORY_TRIVY_DISABLE_ERRORS: true
