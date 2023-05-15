@@ -13,6 +13,9 @@
 </p>
 
 <p align="center">
+  <a href="https://pypi.org/project/i18ntools" alt="Supported Versions">
+    <img src="https://img.shields.io/pypi/pyversions/i18ntools.svg" />
+  </a>
   <a href="https://github.com/hypercision/i18ntools/actions/workflows/python.yml" alt="Unit tests">
     <img src="https://github.com/hypercision/i18ntools/actions/workflows/python.yml/badge.svg" />
   </a>
@@ -40,29 +43,20 @@ Using this script will delete comments in the sorted output file that are not pr
 
 ## Installation
 
-You can currently only clone this repository to run the scripts:
+You can install the i18ntools package using pip:
 
 ```shell
-git clone git@github.com:hypercision/i18ntools.git
+python -m pip install i18ntools
 ```
 
-Navigate to the cloned repository and create a [virtual environment](https://docs.python.org/3/library/venv.html#module-venv)
-to run these Python scripts on your local machine:
+i18ntools officially supports Python 3.8+.
+
+It is recommended to install i18ntools in a [virtual environment](https://docs.python.org/3/library/venv.html#module-venv)
+rather than being installed globally:
 ```shell
-cd i18ntools
 python -m venv i18n_env
 source i18n_env/bin/activate
-```
-
-The command to activate the virtual environment on Windows is:
-```cmd
-i18n_env\Scripts\activate.bat
-```
-
-Then install the packages required by our scripts and an editable installation of this package:
-```shell
-pip install -r requirements.txt
-pip install --editable .
+python -m pip install i18ntools
 ```
 
 When this package is installed, CLI executables of the scripts will be installed on the path of your virtual environment.
@@ -72,11 +66,6 @@ translate-missing --help
 parse-i18n-file --help
 sort-i18n-file --help
 ```
-
-Python “Virtual Environments” allow Python packages to be installed in an isolated location
-for a particular application, rather than being installed globally.
-You should run all your Python commands with your virtual environment activated.
-Once you are done using Python, you can exit the virtual environment by entering `deactivate` in your terminal.
 
 ## Usage
 
@@ -111,8 +100,6 @@ handshake.register.disabledException.error=Instructor is disabled
 When you run:
 ```shell
 translate -i=/home/docs/example.properties -t=es
-# Or you could call the file directly
-python src/i18ntools/translate.py -i=/home/docs/example.properties -t=es
 ```
 Then a new file named `/home/docs/example_es.properties` will be saved and contain Spanish translations
 of the input file, with the comments preserved:
@@ -137,8 +124,7 @@ handshake.register.disabledException.error=El instructor está deshabilitado
 ### Options
 
 These are the options for `translate.py`.
-Details about how to use each file can be found by running it with the `--help` flag:
-`python src/i18ntools/translate_missing.py --help`.
+Details about how to use each file can be found by running it with the `--help` flag.
 
 <!-- markdownlint-disable -->
 | Key | Alias | Description | Default |
@@ -150,6 +136,49 @@ Details about how to use each file can be found by running it with the `--help` 
 | --to [required]   | -t | To which language you want to translate. For example, use de to translate to German. | / |
 | --output_file | -o | Path where the translated `.properties` file will be saved. Overwrites any existing file. | input_file with the output language appended to the filename; i.e., `messages.properties` would become `messages_de.properties`. |
 <!-- markdownlint-restore -->
+
+### Translate multiple files
+
+If you want to tranlsate multiple entire files, you can create a Python file that imports the `i18ntools.translate` module
+and calls `translate_file`:
+```python
+from i18ntools.translate import translate_file
+
+
+files = [
+    "src/app/Admin/i18n/messageBundle.properties",
+    "src/app/Device/crud/i18n/messageBundle.properties",
+    "src/app/Login/i18n/messageBundle.properties",
+]
+
+output_lang = "es"
+
+for input_file in files:
+    translate_file(input_file, output_lang)
+```
+
+If you want to tranlsate missing messages from multiple files, you can create a Python file that imports the
+`i18ntools.translate_missing` module and calls `translate_missing_messages`:
+```python
+from i18ntools.translate_missing import translate_missing_messages
+
+
+files = [
+    "src/app/Admin/i18n/messageBundle.properties",
+    "src/app/Device/crud/i18n/messageBundle.properties",
+    "src/app/Login/i18n/messageBundle.properties",
+]
+
+output_lang = "es"
+sort_file = True
+
+for input_file in files:
+    # This assumes the following files exist:
+    # src/app/Admin/i18n/messageBundle_es.properties
+    # src/app/Device/crud/i18n/messageBundle_es.properties
+    # src/app/Login/i18n/messageBundle_es.properties
+    translate_missing_messages(input_file, output_lang, sort_file)
+```
 
 ## Obtaining API keys
 
