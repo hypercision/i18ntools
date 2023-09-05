@@ -49,7 +49,7 @@ def test_translate_missing_messages_without_api_key(tmp_path):
     """KeyError is raised when environment variable
     TRANSLATOR_API_SUBSCRIPTION_KEY is not set
     """
-    # Set the environment variable and then unset it it.
+    # Set the environment variable and then unset it.
     os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"] = "three_little_ducks"
     os.environ.pop("TRANSLATOR_API_SUBSCRIPTION_KEY")
     output_file = tmp_path / "messages_de.properties"
@@ -77,7 +77,7 @@ def test_translate_missing_messages_with_invalid_api_key(tmp_path):
     output_file = tmp_path / "messages_de.properties"
     output_file.write_text(
         "default.invalid.min.message=Die Eigenschaft [{0}] der Klasse [{1}] "
-        "mit dem Wert [{2}] ist kleiner als der Mindestwert [{3}]\n"
+        "mit Wert [{2}] ist kleiner als der Mindestwert [{3}]\n"
     )
     with pytest.raises(requests.exceptions.HTTPError):
         translate_missing_messages(
@@ -99,7 +99,7 @@ def test_translate_missing_messages(tmp_path, fake_german_i18n_data):
     output_file = tmp_path / "messages_de.properties"
     output_file.write_text(
         "default.invalid.min.message=Die Eigenschaft [{0}] der Klasse [{1}] "
-        "mit dem Wert [{2}] ist kleiner als der Mindestwert [{3}]\n"
+        "mit Wert [{2}] ist kleiner als der Mindestwert [{3}]\n"
     )
     translate_missing_messages(
         "tests/resources/example.properties",
@@ -125,7 +125,7 @@ def test_translate_missing_messages_without_sorting(
     output_file = tmp_path / "messages_de.properties"
     output_file.write_text(
         "default.invalid.min.message=Die Eigenschaft [{0}] der Klasse [{1}] "
-        "mit dem Wert [{2}] ist kleiner als der Mindestwert [{3}]\n"
+        "mit Wert [{2}] ist kleiner als der Mindestwert [{3}]\n"
     )
     translate_missing_messages(
         "tests/resources/example.properties",
@@ -134,3 +134,29 @@ def test_translate_missing_messages_without_sorting(
         output_file_path=str(output_file),
     )
     assert output_file.read_text() == fake_german_i18n_data_unsorted
+
+
+@vcr.use_cassette(
+    "tests/cassettes/test_translate_missing_messages_remove_backslashes.yml",
+    filter_headers=filter_headers,
+)  # type: ignore
+def test_translate_missing_messages_remove_backslashes(
+    tmp_path, fake_german_i18n_data_without_backslashes
+):
+    """translate_missing_messages fills an i18n file with the
+    translations it was missing
+    """
+    os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"] = "not-an-actual-api-key"
+    output_file = tmp_path / "messages_de.properties"
+    output_file.write_text(
+        "default.invalid.min.message=Die Eigenschaft [{0}] der Klasse [{1}] "
+        "mit Wert [{2}] ist kleiner als der Mindestwert [{3}]\n"
+    )
+    translate_missing_messages(
+        "tests/resources/example.properties",
+        "de",
+        sort_file=True,
+        remove_backslashes=True,
+        output_file_path=str(output_file),
+    )
+    assert output_file.read_text() == fake_german_i18n_data_without_backslashes

@@ -30,6 +30,7 @@ def translate_missing_messages(
     output_file_path=None,
     input_lang=default_lang,
     translator_region=default_region,
+    remove_backslashes=False,
 ):
     if not Path(input_file_path).exists():
         raise FileNotFoundError(f"File {input_file_path} does not exist")
@@ -46,8 +47,8 @@ def translate_missing_messages(
         raise FileNotFoundError(f"File {output_file_path} does not exist")
 
     # Parse the input file and output file into a dictionary
-    input_data = parse_i18n_file(input_file_path)
-    output_data = parse_i18n_file(output_file_path)
+    input_data = parse_i18n_file(input_file_path, remove_backslashes)
+    output_data = parse_i18n_file(output_file_path, remove_backslashes)
 
     # Find any i18n messages missing from the output file
     # and put those keys and values in the payload_data dictionary
@@ -149,6 +150,15 @@ def main():
         help="region of the Azure translator resource. Defaults to eastus2",
     )
     parser.add_argument(
+        "-rbs",
+        "--remove_backslashes",
+        action="store_true",
+        help=(
+            "any backslashes from multiline values in the input file "
+            "will not be included in the text that gets translated."
+        ),
+    )
+    parser.add_argument(
         "-s",
         "--sort",
         action="store_true",
@@ -166,6 +176,7 @@ def main():
         args.output_file,
         args.from_lang,
         args.region,
+        args.remove_backslashes,
     )
 
 
