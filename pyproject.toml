@@ -7,6 +7,7 @@ authors = [
     { name = "Tyler VanZanten", email = "tvanzanten@hypercision.com" }
 ]
 dependencies = [
+    "configparser",
     "requests",
 ]
 license = { file="LICENSE" }

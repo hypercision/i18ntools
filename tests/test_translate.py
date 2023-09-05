@@ -90,3 +90,7 @@ def test_make_api_call(fake_german_translations):
     input_data = parse_i18n_file("tests/resources/example.properties")
     translation_info = make_api_call(input_data, "de")
     assert translation_info == fake_german_translations
+
+
+# TODO: add a test case where translate_file is called
+# with remove_backslashes=True
