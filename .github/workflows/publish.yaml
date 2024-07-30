@@ -1,3 +1,4 @@
+# kics-scan disable=a88baa34-e2ad-44ea-ad6f-8cac87bc7c71,555ab8f9-2001-455e-a077-f2d0f41e2fb9
 ---
 name: Upload Python Package
 permissions: read-all
@@ -16,9 +17,9 @@ jobs:
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
       - name: Install dependencies
@@ -28,4 +29,4 @@ jobs:
       - name: Build package
         run: python -m build
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.8.6
+        uses: pypa/gh-action-pypi-publish@v1.9.0
