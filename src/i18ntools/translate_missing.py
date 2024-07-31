@@ -11,11 +11,9 @@ with an "=" character in them.
 """
 
 import argparse
-import os
 from pathlib import Path
 
 import i18ntools.translate
-import requests
 from i18ntools.parse_i18n_file import parse_i18n_file
 from i18ntools.sort_i18n_file import sort_i18n_file
 
@@ -51,23 +49,18 @@ def translate_missing_messages(
             "File {0} does not exist".format(output_file_path), output_file_path
         )
 
-    # Read the Translator API key from an environment variable
-    subscription_key = os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"]
-
     # Parse the input file and output file into a dictionary
     input_data = parse_i18n_file(input_file_path)
     output_data = parse_i18n_file(output_file_path)
 
     # Find any i18n messages missing from the output file
+    # and put those keys and values in the payload_data dictionary
     missing_message_keys = []
-    request_payload = []
+    payload_data = {}
     for key in input_data:
         if key not in output_data:
             missing_message_keys.append(key)
-
-            value = input_data[key]
-            # Add text to translate to the REST API request payload
-            request_payload.append({"text": value})
+            payload_data[key] = input_data[key]
 
     message_count = len(missing_message_keys)
     if message_count == 0:
@@ -79,35 +72,9 @@ def translate_missing_messages(
 
     print(f"About to translate {message_count} missing messages")
 
-    # Set up the Translator API endpoint and subscription key
-    translator_endpoint = (
-        "https://api.cognitive.microsofttranslator.com"
-        "/translate?api-version=3.0&from={0}&to={1}"
-    ).format(input_lang, output_lang)
-
-    # Set up the REST API request headers
-    headers = {
-        "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": subscription_key,
-        "Ocp-Apim-Subscription-Region": translator_region,
-    }
-
-    # Make the REST API call to Translator API to translate the values
-    # https://learn.microsoft.com/en-us/azure/cognitive-services/translator/reference/v3-0-translate
-    response = requests.post(
-        translator_endpoint, headers=headers, json=request_payload, timeout=30
+    response_object = i18ntools.translate.make_api_call(
+        payload_data, output_lang, input_lang, translator_region
     )
-    # Exit with an error if the REST API call was not successful
-    if response.status_code != 200:
-        status_code_message = (
-            f"Translation failed with status code: {response.status_code}"
-        )
-        print(status_code_message)
-        print("Response:", response.text)
-        print("translator_region:", translator_region)
-        raise requests.HTTPError(status_code_message, response)
-
-    response_object = response.json()
 
     # Open the output file in read mode to read its contents
     with open(output_file_path, "r", encoding="utf-8") as f:

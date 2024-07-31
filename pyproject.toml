@@ -28,6 +28,7 @@ dev = [
 ]
 test = [
     "pytest",
+    "vcrpy",
     "tox",
 ]
 

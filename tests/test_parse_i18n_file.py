@@ -3,7 +3,7 @@ from i18ntools.parse_i18n_file import parse_i18n_file
 
 
 def test_parse_file():
-    parsed_data = parse_i18n_file("tests/example.properties")
+    parsed_data = parse_i18n_file("tests/resources/example.properties")
     assert len(parsed_data.keys()) == 6
     assert (
         parsed_data["instructorService.removeSession.success"] == "{0} session removed."
@@ -30,4 +30,4 @@ def test_parse_file():
 def test_parse_file_with_duplicate_keys():
     """SyntaxWarning is raised for files with duplicate keys"""
     with pytest.raises(SyntaxWarning):
-        parse_i18n_file("tests/duplicate.properties")
+        parse_i18n_file("tests/resources/duplicate.properties")

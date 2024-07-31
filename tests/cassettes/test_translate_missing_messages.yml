@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: '[{"text": "I want to see you knocking at the door. \\\n    I wanna leave
+      you out there waiting in the downpour. \\\n    Singing that you\u2019re sorry,
+      dripping on the hall floor."}, {"text": "The customSubmitTS parameter is missing.
+      \\\n    It must be present and of type Date."}, {"text": "{0} session removed."},
+      {"text": "The trial period has ended for your account \\\n    and you can no
+      longer use the application."}, {"text": "Instructor is disabled"}]'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '459'
+      Content-Type:
+      - application/json
+      Ocp-Apim-Subscription-Region:
+      - eastus2
+      User-Agent:
+      - python-requests/2.32.3
+    method: POST
+    uri: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de
+  response:
+    body:
+      string: "[{\"translations\":[{\"text\":\"Ich will dich an der T\xFCr klopfen
+        sehen. \\\\\\n    Ich m\xF6chte dich da drau\xDFen im Regenguss warten lassen.
+        \\\\\\n    Singt, dass es dir leid tut, tropft auf den Boden des Flurs.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der
+        Parameter customSubmitTS fehlt. \\\\\\n    Er muss vorhanden sein und vom
+        Typ Date sein.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"{0} Sitzung
+        wurde entfernt.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der Testzeitraum
+        f\xFCr Ihr Konto ist abgelaufen \\\\\\n    und Sie k\xF6nnen die Anwendung
+        nicht mehr verwenden.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der
+        Kursleiter ist deaktiviert\",\"to\":\"de\"}]}]"
+    headers:
+      Access-Control-Expose-Headers:
+      - X-RequestId
+      - X-Metered-Usage
+      - X-MT-System
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 30 Jul 2024 20:07:23 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-MT-System:
+      - Microsoft
+      X-Metered-Usage:
+      - '376'
+      X-RequestId:
+      - 4a67fa69-cb62-4299-9305-a0558026866f.USE2.0730T2007
+    status:
+      code: 200
+      message: OK
+version: 1

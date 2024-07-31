@@ -1,0 +1,50 @@
+[
+    {
+        "translations": [
+            {
+                "text": "Die Eigenschaft [{0}] der Klasse [{1}] mit dem Wert [{2}] ist kleiner als der Mindestwert [{3}]",
+                "to": "de"
+            }
+        ]
+    },
+    {
+        "translations": [
+            {
+                "text": "Ich will dich an der Tür klopfen sehen. \\\n    Ich möchte dich da draußen im Regenguss warten lassen. \\\n    Singt, dass es dir leid tut, tropft auf den Boden des Flurs.",
+                "to": "de"
+            }
+        ]
+    },
+    {
+        "translations": [
+            {
+                "text": "Der Parameter customSubmitTS fehlt. \\\n    Er muss vorhanden sein und vom Typ Date sein.",
+                "to": "de"
+            }
+        ]
+    },
+    {
+        "translations": [
+            {
+                "text": "{0} Sitzung wurde entfernt.",
+                "to": "de"
+            }
+        ]
+    },
+    {
+        "translations": [
+            {
+                "text": "Der Testzeitraum für Ihr Konto ist abgelaufen \\\n    und Sie können die Anwendung nicht mehr verwenden.",
+                "to": "de"
+            }
+        ]
+    },
+    {
+        "translations": [
+            {
+                "text": "Der Kursleiter ist deaktiviert",
+                "to": "de"
+            }
+        ]
+    }
+]
