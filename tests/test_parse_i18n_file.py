@@ -27,6 +27,24 @@ def test_parse_file():
     )
 
 
+def test_parse_file_2():
+    """Test for parsing a file with a value that has two consecutive
+    apostraphes characters: '
+    """
+    parsed_data = parse_i18n_file("tests/resources/example2.properties")
+    assert len(parsed_data.keys()) == 3
+    assert parsed_data["handshake.register.mobileDeviceLimitReached.error"] == (
+        "The device limit of {0} devices has been reached \\"
+        "\n    for your company''s account and new devices cannot use the "
+        "application. Please contact your \\"
+        "\n    administrator."
+    )
+    assert parsed_data["recordAttendance.segment.notFound.error"] == (
+        "Segment with segmentID {0} \\" "\n    not found in the SessionItem's segments"
+    )
+    assert parsed_data["me"] == "first!"
+
+
 def test_parse_file_with_duplicate_keys():
     """SyntaxWarning is raised for files with duplicate keys"""
     with pytest.raises(SyntaxWarning):

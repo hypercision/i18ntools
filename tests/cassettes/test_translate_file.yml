@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: '[{"text": "The device limit of {0} devices has been reached \\\n    for
+      your company''''s account and new devices cannot use the application. Please
+      contact your \\\n    administrator."}, {"text": "Segment with segmentID {0}
+      \\\n    not found in the SessionItem''s segments"}, {"text": "first!"}]'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '293'
+      Content-Type:
+      - application/json
+      Ocp-Apim-Subscription-Region:
+      - eastus2
+      User-Agent:
+      - python-requests/2.32.3
+    method: POST
+    uri: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=pt
+  response:
+    body:
+      string: "[{\"translations\":[{\"text\":\"O limite de dispositivos de {0} foi
+        atingido \\\\\\n    para a conta da sua empresa e novos dispositivos n\xE3o
+        podem usar o aplicativo. Por favor, entre em contato com o seu \\\\\\n    administrador.\",\"to\":\"pt\"}]},{\"translations\":[{\"text\":\"Segmentar
+        com segmentID {0} \\\\\\n    n\xE3o encontrado nos segmentos do SessionItem\",\"to\":\"pt\"}]},{\"translations\":[{\"text\":\"primeiro!\",\"to\":\"pt\"}]}]"
+    headers:
+      Access-Control-Expose-Headers:
+      - X-RequestId
+      - X-Metered-Usage
+      - X-MT-System
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 09 Aug 2024 20:39:14 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-MT-System:
+      - Microsoft
+      X-Metered-Usage:
+      - '245'
+      X-RequestId:
+      - e623054c-495d-4183-9716-6cbe46e9eae5.USE2.0809T2039
+    status:
+      code: 200
+      message: OK
+version: 1

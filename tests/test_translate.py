@@ -18,6 +18,16 @@ def fake_german_translations():
         return json.load(f)
 
 
+@pytest.fixture
+def fake_portuguese_i18n_data():
+    """Fixture that returns static Portuguese i18n file data."""
+    # Open the input file in read mode to read its contents
+    with open(
+        "tests/resources/translations2_pt.properties", "r", encoding="utf-8"
+    ) as f:
+        return f.read()
+
+
 def test_get_default_filepath():
     assert (
         get_default_filepath("../tmp/messages.properties", "zh")
@@ -46,7 +56,9 @@ def test_translate_without_api_key():
         translate_file("tests/resources/example.properties", "de")
 
 
-@vcr.use_cassette("tests/cassettes/test_translate_with_invalid_api_key.yml")
+@vcr.use_cassette(
+    "tests/cassettes/test_translate_with_invalid_api_key.yml"
+)  # type: ignore
 def test_translate_with_invalid_api_key():
     """HTTPError is raised when environment variable
     TRANSLATOR_API_SUBSCRIPTION_KEY is set to invalid key
@@ -57,8 +69,21 @@ def test_translate_with_invalid_api_key():
 
 
 @vcr.use_cassette(
+    "tests/cassettes/test_translate_file.yml", filter_headers=filter_headers
+)  # type: ignore
+def test_translate_file(tmp_path, fake_portuguese_i18n_data):
+    """translate_file successfully writes translations to an output file"""
+    os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"] = "not-an-actual-api-key"
+    output_file = tmp_path / "example2_pt.properties"
+    translate_file(
+        "tests/resources/example2.properties", "pt", output_file_path=output_file
+    )
+    assert output_file.read_text() == fake_portuguese_i18n_data
+
+
+@vcr.use_cassette(
     "tests/cassettes/test_make_api_call.yml", filter_headers=filter_headers
-)
+)  # type: ignore
 def test_make_api_call(fake_german_translations):
     """make_api_call returns JSON when the API call is successful"""
     os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"] = "not-an-actual-api-key"
