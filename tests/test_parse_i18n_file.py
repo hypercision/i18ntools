@@ -29,10 +29,10 @@ def test_parse_file():
 
 def test_parse_file_2():
     """Test for parsing a file with a value that has two consecutive
-    apostraphes characters: '
+    apostraphes characters (') and another value with escaped newlines.
     """
     parsed_data = parse_i18n_file("tests/resources/example2.properties")
-    assert len(parsed_data.keys()) == 3
+    assert len(parsed_data.keys()) == 4
     assert parsed_data["handshake.register.mobileDeviceLimitReached.error"] == (
         "The device limit of {0} devices has been reached \\"
         "\n    for your company''s account and new devices cannot use the "
@@ -43,6 +43,12 @@ def test_parse_file_2():
         "Segment with segmentID {0} \\" "\n    not found in the SessionItem's segments"
     )
     assert parsed_data["me"] == "first!"
+    assert parsed_data["clientHelpText"] == (
+        "For issues with the software, tablets, and card scanners \\"
+        "\n    only, please contact Tina Herring at \\n\\"
+        "\n    \\n\\"
+        "\n    \\ Email: tina.herring@yourcompany.com"
+    )
 
 
 def test_parse_file_with_duplicate_keys():
