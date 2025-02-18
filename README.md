@@ -169,15 +169,12 @@ files = [
     "app/Login/i18n/messageBundle.properties",
 ]
 
-output_lang = "es"
-sort_file = True
-
 for input_file in files:
     # This assumes the following files exist:
     # app/Admin/i18n/messageBundle_es.properties
     # app/Device/crud/i18n/messageBundle_es.properties
     # app/Login/i18n/messageBundle_es.properties
-    translate_missing_messages(input_file, output_lang, sort_file)
+    translate_missing_messages(input_file, output_lang="es", sort_file=True)
 ```
 
 ## Obtaining API keys

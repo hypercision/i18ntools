@@ -68,7 +68,7 @@ def test_translate_missing_messages_without_api_key(tmp_path):
 
 @vcr.use_cassette(
     "tests/cassettes/test_translate_missing_messages_with_invalid_api_key.yml"
-)
+)  # type: ignore
 def test_translate_missing_messages_with_invalid_api_key(tmp_path):
     """HTTPError is raised when environment variable
     TRANSLATOR_API_SUBSCRIPTION_KEY is set to invalid key
@@ -90,7 +90,7 @@ def test_translate_missing_messages_with_invalid_api_key(tmp_path):
 
 @vcr.use_cassette(
     "tests/cassettes/test_translate_missing_messages.yml", filter_headers=filter_headers
-)
+)  # type: ignore
 def test_translate_missing_messages(tmp_path, fake_german_i18n_data):
     """translate_missing_messages fills an i18n file with the
     translations it was missing
@@ -113,7 +113,7 @@ def test_translate_missing_messages(tmp_path, fake_german_i18n_data):
 @vcr.use_cassette(
     "tests/cassettes/test_translate_missing_messages_without_sorting.yml",
     filter_headers=filter_headers,
-)
+)  # type: ignore
 def test_translate_missing_messages_without_sorting(
     tmp_path, fake_german_i18n_data_unsorted
 ):

@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: '[{"text": "The device limit of {0} devices has been reached \\\n    for
+      your company''''s account and new devices cannot use the application. Please
+      contact your \\\n    administrator."}, {"text": "Segment with segmentID {0}
+      \\\n    not found in the SessionItem''s segments"}, {"text": "first!"}, {"text":
+      "For issues with the software, tablets, and card scanners \\\n    only, please
+      contact Tina Herring at \\n\\\n    \\n\\\n    \\ Email: tina.herring@yourcompany.com"}]'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '469'
+      Content-Type:
+      - application/json
+      Ocp-Apim-Subscription-Region:
+      - eastus2
+      User-Agent:
+      - python-requests/2.32.3
+    method: POST
+    uri: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=pt
+  response:
+    body:
+      string: "[{\"translations\":[{\"text\":\"O limite de dispositivos de {0} foi
+        atingido \\\\\\n    para a conta da sua empresa e novos dispositivos n\xE3o
+        podem usar o aplicativo. Por favor, entre em contato com o seu \\\\\\n    administrador.\",\"to\":\"pt\"}]},{\"translations\":[{\"text\":\"Segmentar
+        com segmentID {0} \\\\\\n    n\xE3o encontrado nos segmentos do SessionItem\",\"to\":\"pt\"}]},{\"translations\":[{\"text\":\"primeiro!\",\"to\":\"pt\"}]},{\"translations\":[{\"text\":\"Para
+        problemas com o software, tablets e scanners de cart\xE3o \\\\\\n    apenas,
+        entre em contato com Tina Herring em \\\\n\\\\\\n    \\\\n\\\\\\n    \\\\
+        E-mail: tina.herring@yourcompany.com\",\"to\":\"pt\"}]}]"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 18 Feb 2025 20:45:41 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      access-control-expose-headers:
+      - X-RequestId,X-Metered-Usage,X-MT-System
+      x-content-type-options:
+      - nosniff
+      x-envoy-upstream-service-time:
+      - '305'
+      x-metered-usage:
+      - '398'
+      x-mt-system:
+      - Microsoft
+      x-requestid:
+      - 5258f474-297e-402c-b666-9257f45b35ac.USE2.0218T2045
+    status:
+      code: 200
+      message: OK
+version: 1
