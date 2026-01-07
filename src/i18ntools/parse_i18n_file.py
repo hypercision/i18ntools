@@ -24,7 +24,7 @@ def parse_i18n_file(file_path):
     file_path -- filepath of the i18n Java properties file to parse
     """
     if not Path(file_path).exists():
-        raise FileNotFoundError("File {0} does not exist".format(file_path), file_path)
+        raise FileNotFoundError(f"File {file_path} does not exist")
 
     # Open the input file in read mode to read its contents
     with open(file_path, "r", encoding="utf-8") as f:
@@ -32,7 +32,7 @@ def parse_i18n_file(file_path):
 
     data = {}
     duplicate_keys = set()
-    mostRecentKey = None
+    most_recent_key = None
     for line in file_contents:
         # Skip comments and empty lines
         if line.startswith("#") or line.strip() == "":
@@ -44,7 +44,7 @@ def parse_i18n_file(file_path):
             # This line is part of a multiline value.
             # Add the additional line to the value in our dictionary,
             # stripping the trailing whitespace.
-            data[mostRecentKey] += "\n" + line.rstrip()
+            data[most_recent_key] += "\n" + line.rstrip()
             continue
 
         key = parts[0]
@@ -52,7 +52,7 @@ def parse_i18n_file(file_path):
         if key in data:
             duplicate_keys.add(key)
         data[key] = value
-        mostRecentKey = key
+        most_recent_key = key
 
     if len(duplicate_keys) > 0:
         raise SyntaxWarning(

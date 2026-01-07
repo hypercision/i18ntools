@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """This script translates the messages in an i18n Java properties file that are
 missing from an i18n Java properties file of a different language
-by making Rest API calls to Microsoft Azure Cognitive Services Translator.
+by making REST API calls to Microsoft Azure Cognitive Services Translator.
 
 Requires the API secret key to be set in an environment variable
 named TRANSLATOR_API_SUBSCRIPTION_KEY .
@@ -32,9 +32,7 @@ def translate_missing_messages(
     translator_region=default_region,
 ):
     if not Path(input_file_path).exists():
-        raise FileNotFoundError(
-            "File {0} does not exist".format(input_file_path), input_file_path
-        )
+        raise FileNotFoundError(f"File {input_file_path} does not exist")
 
     if output_file_path is None:
         # Make output_file_path be the input_file_path with the
@@ -45,9 +43,7 @@ def translate_missing_messages(
         )
 
     if not Path(output_file_path).exists():
-        raise FileNotFoundError(
-            "File {0} does not exist".format(output_file_path), output_file_path
-        )
+        raise FileNotFoundError(f"File {output_file_path} does not exist")
 
     # Parse the input file and output file into a dictionary
     input_data = parse_i18n_file(input_file_path)
@@ -138,7 +134,7 @@ def main():
             "filename of the output properties file with the missing messages. "
             "Can be specified as a relative or absolute file path. "
             "Defaults to the input_file with the output_lang appended to it. "
-            "For example, messages.properties would become messages_de.properties . "
+            "For example, messages.properties would become messages_de.properties. "
             "If the file does not exist, the program will exit with an error."
         ),
     )
