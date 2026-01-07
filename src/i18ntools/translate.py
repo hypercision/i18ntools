@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """This script translates an i18n Java properties file into a new
 i18n Java properties file of a different language
-by making Rest API calls to Microsoft Azure Cognitive Services Translator.
+by making REST API calls to Microsoft Azure Cognitive Services Translator.
 
 Requires the API secret key to be set in an environment variable
 named TRANSLATOR_API_SUBSCRIPTION_KEY .
@@ -29,7 +29,7 @@ def get_default_filepath(input_file_path, output_lang):
     """Returns the filepath for a new i18n Java properties file
     based on the filepath of the input file and the output language.
 
-    The filepath returned with be in the same directory as the input file.
+    The filepath returned will be in the same directory as the input file.
     The filename will be the same as the input file but with the
     output_lang appended to it. For example, "/dir/messages.properties"
     would become "/dir/messages_de.properties"

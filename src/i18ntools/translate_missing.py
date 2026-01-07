@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """This script translates the messages in an i18n Java properties file that are
 missing from an i18n Java properties file of a different language
-by making Rest API calls to Microsoft Azure Cognitive Services Translator.
+by making REST API calls to Microsoft Azure Cognitive Services Translator.
 
 Requires the API secret key to be set in an environment variable
 named TRANSLATOR_API_SUBSCRIPTION_KEY .
@@ -138,7 +138,7 @@ def main():
             "filename of the output properties file with the missing messages. "
             "Can be specified as a relative or absolute file path. "
             "Defaults to the input_file with the output_lang appended to it. "
-            "For example, messages.properties would become messages_de.properties . "
+            "For example, messages.properties would become messages_de.properties. "
             "If the file does not exist, the program will exit with an error."
         ),
     )
