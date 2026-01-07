@@ -24,7 +24,7 @@ def parse_i18n_file(file_path):
     file_path -- filepath of the i18n Java properties file to parse
     """
     if not Path(file_path).exists():
-        raise FileNotFoundError("File {0} does not exist".format(file_path), file_path)
+        raise FileNotFoundError(f"File {file_path} does not exist")
 
     # Open the input file in read mode to read its contents
     with open(file_path, "r", encoding="utf-8") as f:

@@ -32,9 +32,7 @@ def translate_missing_messages(
     translator_region=default_region,
 ):
     if not Path(input_file_path).exists():
-        raise FileNotFoundError(
-            "File {0} does not exist".format(input_file_path), input_file_path
-        )
+        raise FileNotFoundError(f"File {input_file_path} does not exist")
 
     if output_file_path is None:
         # Make output_file_path be the input_file_path with the
@@ -45,9 +43,7 @@ def translate_missing_messages(
         )
 
     if not Path(output_file_path).exists():
-        raise FileNotFoundError(
-            "File {0} does not exist".format(output_file_path), output_file_path
-        )
+        raise FileNotFoundError(f"File {output_file_path} does not exist")
 
     # Parse the input file and output file into a dictionary
     input_data = parse_i18n_file(input_file_path)

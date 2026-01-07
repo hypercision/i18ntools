@@ -111,9 +111,7 @@ def translate_file(
     translator_region=default_region,
 ):
     if not Path(input_file_path).exists():
-        raise FileNotFoundError(
-            "File {0} does not exist".format(input_file_path), input_file_path
-        )
+        raise FileNotFoundError(f"File {input_file_path} does not exist")
 
     if output_file_path is None:
         # Make output_file_path be the input_file_path with the
