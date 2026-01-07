@@ -49,7 +49,7 @@ You can install the i18ntools package using pip:
 python -m pip install i18ntools
 ```
 
-i18ntools officially supports Python 3.8+.
+i18ntools officially supports Python 3.10+.
 
 It is recommended to install i18ntools in a [virtual environment](https://docs.python.org/3/library/venv.html#module-venv)
 rather than being installed globally:
