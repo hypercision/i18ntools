@@ -7,7 +7,7 @@ click==8.1.7
 colorama==0.4.6
 distlib==0.3.8
 exceptiongroup==1.1.1
-filelock==3.20.2
+filelock==3.20.3
 idna==3.7
 iniconfig==2.0.0
 multidict==6.0.5
@@ -22,9 +22,9 @@ PyYAML==6.0.1
 requests==2.32.5
 tomli==2.0.1
 tox==4.16.0
-typing_extensions==4.12.2
+typing_extensions==4.15.0
 urllib3==2.6.3
 vcrpy==6.0.1
-virtualenv==20.29.2
+virtualenv==20.36.1
 wrapt==1.16.0
 yarl==1.9.4
