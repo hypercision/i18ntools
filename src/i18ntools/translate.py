@@ -109,6 +109,7 @@ def translate_file(
     output_file_path=None,
     input_lang=default_lang,
     translator_region=default_region,
+    remove_backslashes=False,
 ):
     if not Path(input_file_path).exists():
         raise FileNotFoundError(f"File {input_file_path} does not exist")
@@ -120,7 +121,7 @@ def translate_file(
         output_file_path = get_default_filepath(input_file_path, output_lang)
 
     # Parse the input file into a dictionary
-    input_data = parse_i18n_file(input_file_path)
+    input_data = parse_i18n_file(input_file_path, remove_backslashes)
 
     # Open the input file in read mode to read its contents
     with open(input_file_path, "r", encoding="utf-8") as f:
@@ -214,9 +215,23 @@ def main():
         default=default_region,
         help="region of the Azure translator resource. Defaults to eastus2",
     )
+    parser.add_argument(
+        "-rbs",
+        "--remove_backslashes",
+        action="store_true",
+        help=(
+            "any backslashes from multiline values in the input file "
+            "will not be included in the text that gets translated."
+        ),
+    )
     args = parser.parse_args()
     translate_file(
-        args.input_file, args.to, args.output_file, args.from_lang, args.region
+        args.input_file,
+        args.to,
+        args.output_file,
+        args.from_lang,
+        args.region,
+        args.remove_backslashes,
     )
 
 

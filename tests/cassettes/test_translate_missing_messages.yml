@@ -5,7 +5,10 @@ interactions:
       dripping on the hall floor."}, {"text": "The customSubmitTS parameter is missing.
       \\\n    It must be present and of type Date."}, {"text": "{0} session removed."},
       {"text": "The trial period has ended for your account \\\n    and you can no
-      longer use the application."}, {"text": "Instructor is disabled"}]'
+      longer use the application."}, {"text": "Instructor is disabled"}, {"text":
+      "\\\n    Attendance actions made on this page will also be made for every session
+      in this group."}, {"text": "Errors: {0}. \\n\\n Sessions successfully removed:
+      {1}"}]'
     headers:
       Accept:
       - '*/*'
@@ -14,49 +17,51 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '459'
+      - '636'
       Content-Type:
       - application/json
       Ocp-Apim-Subscription-Region:
       - eastus2
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: POST
     uri: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de
   response:
     body:
       string: "[{\"translations\":[{\"text\":\"Ich will dich an der T\xFCr klopfen
-        sehen. \\\\\\n    Ich m\xF6chte dich da drau\xDFen im Regenguss warten lassen.
-        \\\\\\n    Singt, dass es dir leid tut, tropft auf den Boden des Flurs.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der
-        Parameter customSubmitTS fehlt. \\\\\\n    Er muss vorhanden sein und vom
-        Typ Date sein.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"{0} Sitzung
-        wurde entfernt.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der Testzeitraum
-        f\xFCr Ihr Konto ist abgelaufen \\\\\\n    und Sie k\xF6nnen die Anwendung
+        sehen. \\\\\\n    Ich will dich drau\xDFen im Wolkenbruch warten lassen. \\\\\\n
+        \   Singend, dass es dir leid tut, tropfend auf den Flurboden.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der
+        customSubmitTS-Parameter fehlt. \\\\\\n    Es muss anwesend und vom Typ Datum
+        sein.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"{0} Sitzung entfernt.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Die
+        Testphase f\xFCr dein Konto ist beendet \\\\\\n    Und Sie k\xF6nnen die Anwendung
         nicht mehr verwenden.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der
-        Kursleiter ist deaktiviert\",\"to\":\"de\"}]}]"
+        Ausbilder ist behindert\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"\\\\\\n
+        \   F\xFCr jede Sitzung in dieser Gruppe werden auch die auf dieser Seite
+        vorgenommenen Anwesenheitsma\xDFnahmen vorgenommen.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Fehler:
+        {0}. \\\\n\\\\n Sitzungen erfolgreich entfernt: {1}\",\"to\":\"de\"}]}]"
     headers:
-      Access-Control-Expose-Headers:
-      - X-RequestId
-      - X-Metered-Usage
-      - X-MT-System
       Connection:
       - keep-alive
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 30 Jul 2024 20:07:23 GMT
+      - Wed, 14 Jan 2026 19:36:47 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
       - chunked
-      X-Content-Type-Options:
+      access-control-expose-headers:
+      - X-RequestId,X-Metered-Usage,X-MT-System
+      x-content-type-options:
       - nosniff
-      X-MT-System:
+      x-envoy-upstream-service-time:
+      - '734'
+      x-metered-usage:
+      - '521'
+      x-mt-system:
       - Microsoft
-      X-Metered-Usage:
-      - '376'
-      X-RequestId:
-      - 4a67fa69-cb62-4299-9305-a0558026866f.USE2.0730T2007
+      x-requestid:
+      - c49e2ff1-99a1-4a2d-b6f9-16660e39dd42.EUWE.0114T1936
     status:
       code: 200
       message: OK

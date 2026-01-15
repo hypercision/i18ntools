@@ -82,6 +82,25 @@ def test_translate_file(tmp_path, fake_portuguese_i18n_data):
 
 
 @vcr.use_cassette(
+    "tests/cassettes/test_translate_file_without_backslashes.yml",
+    filter_headers=filter_headers,
+)  # type: ignore
+def test_translate_file_without_backslashes(
+    tmp_path, fake_german_i18n_data_without_backslashes
+):
+    """translate_file successfully writes translations to an output file"""
+    os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"] = "not-an-actual-api-key"
+    output_file = tmp_path / "example_de.properties"
+    translate_file(
+        "tests/resources/example.properties",
+        "de",
+        remove_backslashes=True,
+        output_file_path=output_file,
+    )
+    assert output_file.read_text() == fake_german_i18n_data_without_backslashes
+
+
+@vcr.use_cassette(
     "tests/cassettes/test_make_api_call.yml", filter_headers=filter_headers
 )  # type: ignore
 def test_make_api_call(fake_german_translations):

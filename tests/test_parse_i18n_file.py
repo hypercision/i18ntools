@@ -4,7 +4,7 @@ from i18ntools.parse_i18n_file import parse_i18n_file
 
 def test_parse_file():
     parsed_data = parse_i18n_file("tests/resources/example.properties")
-    assert len(parsed_data.keys()) == 6
+    assert len(parsed_data.keys()) == 8
     assert (
         parsed_data["instructorService.removeSession.success"] == "{0} session removed."
     )
@@ -24,6 +24,15 @@ def test_parse_file():
         "I want to see you knocking at the door. \\"
         "\n    I wanna leave you out there waiting in the downpour. \\"
         "\n    Singing that you’re sorry, dripping on the hall floor."
+    )
+
+    assert parsed_data["associatedGroupMessageText"] == (
+        "\\\n    Attendance actions made on this page will "
+        "also be made for every session in this group."
+    )
+
+    assert parsed_data["removedMultipleSessionsErrorsMessage"] == (
+        "Errors: {0}. \\n\\n Sessions successfully removed: {1}"
     )
 
 
@@ -49,9 +58,67 @@ def test_parse_file_2():
         "\n    \\n\\"
         "\n    \\ Email: tina.herring@yourcompany.com"
     )
+    # Now test parsing the file when removing backslashes
+    parsed_data = parse_i18n_file(
+        "tests/resources/example2.properties", remove_backslashes=True
+    )
+    assert len(parsed_data.keys()) == 4
+    assert parsed_data["handshake.register.mobileDeviceLimitReached.error"] == (
+        "The device limit of {0} devices has been reached "
+        "for your company''s account and new devices cannot use the application. "
+        "Please contact your administrator."
+    )
+    assert parsed_data["recordAttendance.segment.notFound.error"] == (
+        "Segment with segmentID {0} not found in the SessionItem's segments"
+    )
+    assert parsed_data["me"] == "first!"
+    assert parsed_data["clientHelpText"] == (
+        "For issues with the software, tablets, and card scanners "
+        "only, please contact Tina Herring at \\n \\n "
+        "\\ Email: tina.herring@yourcompany.com"
+    )
+
+
+def test_parse_file_and_remove_slashes():
+    parsed_data = parse_i18n_file(
+        "tests/resources/example.properties", remove_backslashes=True
+    )
+    assert len(parsed_data.keys()) == 8
+    assert "instructorService.removeSession.success" in parsed_data
+    assert (
+        parsed_data["instructorService.removeSession.success"] == "{0} session removed."
+    )
+    assert parsed_data["default.invalid.min.message"] == (
+        "Property [{0}] of class [{1}] with value "
+        "[{2}] is less than minimum value [{3}]"
+    )
+
+    assert parsed_data[
+        "instructor.submitWithCustomTime.customSubmitTS.missing.error"
+    ] == (
+        "The customSubmitTS parameter is missing. "
+        "It must be present and of type Date."
+    )
+
+    assert parsed_data["TheBeths.YourSide.lyrics"] == (
+        "I want to see you knocking at the door. "
+        "I wanna leave you out there waiting in the downpour. "
+        "Singing that you’re sorry, dripping on the hall floor."
+    )
+
+    assert parsed_data["associatedGroupMessageText"] == (
+        "Attendance actions made on this page will "
+        "also be made for every session in this group."
+    )
+
+    assert parsed_data["removedMultipleSessionsErrorsMessage"] == (
+        "Errors: {0}. \\n\\n Sessions successfully removed: {1}"
+    )
 
 
 def test_parse_file_with_duplicate_keys():
     """SyntaxWarning is raised for files with duplicate keys"""
     with pytest.raises(SyntaxWarning):
         parse_i18n_file("tests/resources/duplicate.properties")
+    with pytest.raises(SyntaxWarning):
+        parse_i18n_file("tests/resources/duplicate.properties", remove_backslashes=True)

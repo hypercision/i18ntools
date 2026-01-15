@@ -10,10 +10,6 @@ Instructions:
 
 ## Testing
 
-### vcrpy
-
-In addition to [`pytest`](https://docs.pytest.org/), we also use the [`vcrpy`](https://vcrpy.readthedocs.io/) library when writing our tests.
-
 ### tox
 
 To run the tests, install the project dependencies in a [virtual environment](https://docs.python.org/3/library/venv.html#module-venv)
@@ -40,6 +36,17 @@ Anytime we need to add more packages, we install them like so and then update ou
 pip install "<package_name>"
 pip freeze > requirements.txt
 ```
+
+### vcrpy
+
+In addition to [`pytest`](https://docs.pytest.org/), we also use the [`vcrpy`](https://vcrpy.readthedocs.io/) library when writing our tests.
+
+If you need to update or regenerate a cassette for a test, i.e. [`tests/cassettes/test_translate_missing_messages_without_sorting.yml`](https://github.com/hypercision/i18ntools/blob/main/tests/cassettes/test_translate_missing_messages_without_sorting.yml), then:
+
+- delete the cassette yml file
+- update the `os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"]` line in the test so it is set to a real API key (but do not commit this change)
+- run the tests with `tox`. This will regenerate the cassette yml file
+- revert the `os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"]` line in the test so it is no longer a real API key
 
 ### Editable installation
 

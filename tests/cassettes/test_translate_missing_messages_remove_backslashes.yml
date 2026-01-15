@@ -1,0 +1,65 @@
+interactions:
+- request:
+    body: '[{"text": "I want to see you knocking at the door. I wanna leave you out
+      there waiting in the downpour. Singing that you\u2019re sorry, dripping on the
+      hall floor."}, {"text": "The customSubmitTS parameter is missing. It must be
+      present and of type Date."}, {"text": "{0} session removed."}, {"text": "The
+      trial period has ended for your account and you can no longer use the application."},
+      {"text": "Instructor is disabled"}, {"text": " Attendance actions made on this
+      page will also be made for every session in this group."}, {"text": "Errors:
+      {0}. \\n\\n Sessions successfully removed: {1}"}]'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '597'
+      Content-Type:
+      - application/json
+      Ocp-Apim-Subscription-Region:
+      - eastus2
+      User-Agent:
+      - python-requests/2.32.5
+    method: POST
+    uri: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de
+  response:
+    body:
+      string: "[{\"translations\":[{\"text\":\"Ich will dich an der T\xFCr klopfen
+        sehen. Ich will dich drau\xDFen im Wolkenbruch warten lassen. Singend, dass
+        es dir leid tut, tropfend auf den Flurboden.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der
+        customSubmitTS-Parameter fehlt. Es muss anwesend und vom Typ Datum sein.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"{0}
+        Sitzung entfernt.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Die Testphase
+        f\xFCr dein Konto ist beendet und du kannst die Anwendung nicht mehr nutzen.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Der
+        Ausbilder ist behindert\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"F\xFCr jede Sitzung in dieser Gruppe werden auch die auf dieser Seite vorgenommenen
+        Anwesenheitsma\xDFnahmen vorgenommen.\",\"to\":\"de\"}]},{\"translations\":[{\"text\":\"Fehler:
+        {0}. \\\\n\\\\n Sitzungen erfolgreich entfernt: {1}\",\"to\":\"de\"}]}]"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 14 Jan 2026 19:36:49 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      access-control-expose-headers:
+      - X-RequestId,X-Metered-Usage,X-MT-System
+      x-content-type-options:
+      - nosniff
+      x-envoy-upstream-service-time:
+      - '488'
+      x-metered-usage:
+      - '492'
+      x-mt-system:
+      - Microsoft
+      x-requestid:
+      - 234b31a1-6f98-4ff2-9091-7b6a409ecf58.EUWE.0114T1936
+    status:
+      code: 200
+      message: OK
+version: 1
