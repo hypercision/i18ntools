@@ -1,6 +1,6 @@
 [project]
 name = "i18ntools"
-version = "0.1.0"
+version = "0.2.0"
 description = "i18ntools helps translate Java properties i18n files using Azure Cognitive Services Translator"
 readme = "README.md"
 authors = [
