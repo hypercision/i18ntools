@@ -2,6 +2,7 @@ Thumbs.db
 .DS_Store
 .gradle
 build/
+dist/
 out/
 logs/
 node_modules/
