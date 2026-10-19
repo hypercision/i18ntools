@@ -28,28 +28,71 @@ def fake_portuguese_i18n_data():
         return f.read()
 
 
-def test_get_default_filepath():
-    assert (
-        get_default_filepath("../tmp/messages.properties", "zh")
-        == "../tmp/messages_zh.properties"
-    )
+@pytest.mark.parametrize(
+    ("input_file_path", "output_lang", "expected"),
+    [
+        ("../tmp/messages.properties", "zh", "../tmp/messages_zh.properties"),
+        ("/home/docs/i18n_vi.properties", "es", "/home/docs/i18n_es.properties"),
+        ("/home/docs/i18n_en_GB.properties", "de", "/home/docs/i18n_de.properties"),
+        # Regression: underscore in a directory name
+        (
+            "webapp/i18n_main/messageBundle.properties",
+            "en",
+            "webapp/i18n_main/messageBundle_en.properties",
+        ),
+        (
+            "webapp/i18n_main/messageBundle_fr.properties",
+            "en",
+            "webapp/i18n_main/messageBundle_en.properties",
+        ),
+        # Underscores in multiple directories and in the filename
+        (
+            "my_project/src_main/app_messages_en.properties",
+            "de",
+            "my_project/src_main/app_messages_de.properties",
+        ),
+        # Underscore in the filename that is not a locale
+        ("message_bundle.properties", "de", "message_bundle_de.properties"),
+        # Script and numeric region locale suffixes
+        ("messages_zh_Hant_TW.properties", "fr", "messages_fr.properties"),
+        ("messages_zh_Hant.properties", "fr", "messages_fr.properties"),
+        ("messages_es_419.properties", "pt", "messages_pt.properties"),
+        # Three-letter language code
+        ("messages_fil.properties", "de", "messages_de.properties"),
+        # No directory
+        ("messages.properties", "de", "messages_de.properties"),
+        # Dots and underscores in directory names
+        (
+            "my.app_v2/i18n_files/messages.properties",
+            "de",
+            "my.app_v2/i18n_files/messages_de.properties",
+        ),
+        # No file extension
+        ("i18n_dir/messages_en", "de", "i18n_dir/messages_de"),
+        # Windows-style path separators are preserved
+        (
+            "C:\\web_app\\i18n_main\\messages_en.properties",
+            "de",
+            "C:\\web_app\\i18n_main\\messages_de.properties",
+        ),
+    ],
+)
+def test_get_default_filepath(input_file_path, output_lang, expected):
+    assert get_default_filepath(input_file_path, output_lang) == expected
 
-    assert (
-        get_default_filepath("/home/docs/i18n_vi.properties", "es")
-        == "/home/docs/i18n_es.properties"
-    )
 
-    assert (
-        get_default_filepath("/home/docs/i18n_en_GB.properties", "de")
-        == "/home/docs/i18n_de.properties"
-    )
+def test_get_default_filepath_accepts_path_objects(tmp_path):
+    """A pathlib.Path input produces the same result as its string form."""
+    input_path = tmp_path / "i18n_main" / "messages_en.properties"
+    expected = str(tmp_path / "i18n_main" / "messages_de.properties")
+    assert get_default_filepath(input_path, "de") == expected
 
 
 def test_translate_without_api_key():
     """KeyError is raised when environment variable
     TRANSLATOR_API_SUBSCRIPTION_KEY is not set
     """
-    # Set the environment variable and then unset it it.
+    # Set the environment variable and then unset it.
     os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"] = "three_little_ducks"
     os.environ.pop("TRANSLATOR_API_SUBSCRIPTION_KEY")
     with pytest.raises(KeyError):
@@ -61,7 +104,7 @@ def test_translate_without_api_key():
 )  # type: ignore
 def test_translate_with_invalid_api_key():
     """HTTPError is raised when environment variable
-    TRANSLATOR_API_SUBSCRIPTION_KEY is set to invalid key
+    TRANSLATOR_API_SUBSCRIPTION_KEY is set to an invalid key
     """
     os.environ["TRANSLATOR_API_SUBSCRIPTION_KEY"] = "three_little_ducks"
     with pytest.raises(requests.exceptions.HTTPError):
