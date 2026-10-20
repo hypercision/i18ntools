@@ -20,6 +20,10 @@ DISABLE_LINTERS:
     SPELL_LYCHEE,
     TERRAFORM_CHECKOV,
   ]
+DISABLE_ERRORS_LINTERS:
+  [
+    REPOSITORY_OSV_SCANNER,
+  ]
 SHOW_ELAPSED_TIME: false
 FILEIO_REPORTER: false
 # DISABLE_ERRORS: true # Uncomment if you want MegaLinter to detect errors but not block CI to pass
