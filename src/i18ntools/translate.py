@@ -24,6 +24,16 @@ default_region = "eastus2"
 # Default language to translate from.
 default_lang = "en"
 
+# Matches a Java locale suffix at the end of a filename stem, e.g.
+# "_en", "_en_GB", "_es_419", "_zh_Hant", "_zh_Hant_TW".
+# Format: _language[_Script][_REGION]
+_LOCALE_SUFFIX_PATTERN = re.compile(
+    r"_[a-z]{2,3}"  # language: ISO 639 code, e.g. en, de, fil
+    r"(?:_[A-Z][a-z]{3})?"  # optional script: ISO 15924 code, e.g. Hant
+    r"(?:_(?:[A-Z]{2}|\d{3}))?"  # optional region: ISO 3166 or UN M.49, e.g. GB, 419
+    r"$"
+)
+
 
 def get_default_filepath(input_file_path, output_lang):
     """Returns the filepath for a new i18n Java properties file
@@ -35,16 +45,23 @@ def get_default_filepath(input_file_path, output_lang):
     would become "/dir/messages_de.properties"
     and "/dir/messages_zh.properties" would become "/dir/messages_de.properties".
 
+    Only a trailing locale suffix in the filename (e.g. "_en", "_en_GB",
+    "_zh_Hant_TW") is replaced. Underscores elsewhere in the filename or
+    anywhere in the directory path are preserved.
+
     Keyword arguments:
     input_file_path -- filepath of the file to translate
     output_lang -- language of the output file i.e. de for German
     """
-    parts = os.path.splitext(input_file_path)
-    file_path_without_extension = parts[0]
-    # Use regex string replace to remove the language code
-    # from the filename, if there is one.
-    file_path_without_extension = re.sub("_.*$", "", file_path_without_extension)
-    return f"{file_path_without_extension}_{output_lang}{parts[1]}"
+    input_file_path = str(input_file_path)
+    # Only operate on the filename, so the directory path is never modified.
+    filename = os.path.basename(input_file_path)
+    directory_prefix = input_file_path[: len(input_file_path) - len(filename)]
+
+    stem, extension = os.path.splitext(filename)
+    # Remove the existing locale suffix from the filename, if there is one.
+    stem = _LOCALE_SUFFIX_PATTERN.sub("", stem, count=1)
+    return f"{directory_prefix}{stem}_{output_lang}{extension}"
 
 
 def make_api_call(
